@@ -2,11 +2,13 @@ name:  CI
 on:  
   push:
     branches:
-     [" main, tp1 "]
+     - main
+     - tp1
 
   pull_request:
     branches:
-     [" main "]
+     - main
+     - tp1
 
 
 jobs:
