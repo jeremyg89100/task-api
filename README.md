@@ -1,4 +1,4 @@
-![CI](https://github.com/<votre-compte>/tasks-api/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/jeremyg89100/task-api/actions/workflows/ci.yml/badge.svg)](https://github.com/jeremyg89100/task-api/actions/workflows/ci.yml)
 # tasks-api : fil rouge du cours GitOps & CI/CD
 
 Petite API Flask de gestion de tâches. On ne travaille pas sur l'application elle-même :
