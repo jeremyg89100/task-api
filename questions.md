@@ -18,3 +18,21 @@ Tandis que black est un formateur, il vérifie si les fichiers sont formatés se
 ### Pourquoi séparer lint et test en deux jobs ?
 Lint et test sont séparés en 2 jobs afin de pouvoir les tester séparément et éviter de donner trop de responsabilité dans un seul.
 Cela permet également de lire les erreurs plus facilement. 
+
+### Pourquoi tester sur plusieurs versions de Python ?
+Si jamais plus tard on veut faire un changement de version de python cela permet de voir déjà les erreurs potentielles et les corriger en amont.
+
+### Que gagne-t-on avec le cache ?
+Le cache permet de gagner du temps. Cela va chercher les informations présentes dans le cache à la place d'avoir à les télécharger à chaque fois. 
+
+### Un artefact, c'est quoi ?
+Un artefact est un fichier où l'on peut récupérer les informations de l'éxecution d'un job.
+
+### Pourquoi interdire de pousser directement sur main ?
+Interdir de pousser sur le main permet d'éviter qu'une personne non autorisée pousse du code. Il s'agit d'une protection supplémentaire.
+
+### Pourquoi Git ne peut-il pas résoudre ce conflit seul ?
+Git ne connait pas l'intention des développeurs qui sont à l'origine du conflit. Il faut donc que les développeurs résolvent le problème eux-même pour effectuer la PR.
+
+### Qu'est-ce qui a vérifié le code après la résolution ?
+La CI vérifie après la résolution.
