@@ -25,17 +25,21 @@ jobs:
         
       - name: Formatage du code
         run: black --check .
-        
+
   test:
     runs-on: ubuntu-latest
-    steps:
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps: 
       - name: Récupérer le code
         uses: actions/checkout@v4
-
-      - name: Installer Python 3.12
+        
+      - name: Matrix de python
         uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: 
+          python-version: ${{ matrix.python-version }}
+          cache: pip
 
       - name: Installer les dépendances
         run: pip install -r requirements-dev.txt
