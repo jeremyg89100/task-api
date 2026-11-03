@@ -40,7 +40,7 @@ jobs:
         with: 
           python-version: ${{ matrix.python-version }}
           cache: pip
-
+ 
       - name: Installer les dépendances
         run: pip install -r requirements-dev.txt
 
