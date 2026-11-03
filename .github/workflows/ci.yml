@@ -45,7 +45,7 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Lancer les tests
-        run: pytest --cov=app --cov-fail-under=80 .
+        run: pytest --cov=app --cov-fail-under=80 --cov-report=xml .
 
       - name: Afficher la version de python 
         run: python --version
