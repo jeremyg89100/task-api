@@ -45,3 +45,8 @@ Si on le commit sur le dépôt il faut ensuite le révoquer car tout le monde po
 
 ###  Secret ou variable : comment choisir ?
 Si l'on veut protéger la valeur, il faut choisir secret. Si elle n'a pas besoin d'être protégé alors on peut choisir une variable. 
+
+### Questions : Pour chaque pipeline : quel était le bug, comment l'avez-vous trouvé, comment l'éviter à l'avenir ?
+Pour la pipeline A le problème était à la ligne 12, elle n'était pas aligné
+Pour la pipeline B il manquait le actions/checkout@v6
+Pour la pipeline C il manquait les guillemets pour les versions de pythons à la ligne 9
