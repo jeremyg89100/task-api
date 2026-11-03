@@ -1,15 +1,9 @@
 name:  CI
 on:  
   push:
-    branches:
-     - main
-     - tp1
-
+    branches: [main]
   pull_request:
-    branches:
-     - main
-     - tp1
-
+    branches: [main]
 
 jobs:
   test:
