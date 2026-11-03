@@ -36,3 +36,17 @@ Git ne connait pas l'intention des développeurs qui sont à l'origine du confli
 
 ### Qu'est-ce qui a vérifié le code après la résolution ?
 La CI vérifie après la résolution.
+
+### Pourquoi GitHub masque-t-il le secret ?
+Github masque le secret pour que personne extérieure puisse avoir accès au code.
+
+### Que se passe-t-il si on le commite dans le dépôt ?
+Si on le commit sur le dépôt il faut ensuite le révoquer car tout le monde pourra avoir accès à notre secret étant donné que GitHub dispose d'un historique qui ne peut être supprimé.
+
+###  Secret ou variable : comment choisir ?
+Si l'on veut protéger la valeur, il faut choisir secret. Si elle n'a pas besoin d'être protégé alors on peut choisir une variable. 
+
+### Questions : Pour chaque pipeline : quel était le bug, comment l'avez-vous trouvé, comment l'éviter à l'avenir ?
+Pour la pipeline A le problème était à la ligne 12, elle n'était pas aligné
+Pour la pipeline B il manquait le actions/checkout@v6
+Pour la pipeline C il manquait les guillemets pour les versions de pythons à la ligne 9
