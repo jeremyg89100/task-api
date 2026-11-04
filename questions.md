@@ -64,4 +64,7 @@ Le conteneur est donc l'instance de l'image.
 ### A quoi sert le .dockerignore
 Le dockerignore permet d'empêcher de push certains fichiers qui doivent rester privé (exemple: .env)
 
+###  Que gagne-t-on à décrire le lancement dans un fichier plutôt que dans une longue commande ?
+Cela permet de gagner en lisibilité
+
 
