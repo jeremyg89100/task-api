@@ -50,3 +50,21 @@ Si l'on veut protéger la valeur, il faut choisir secret. Si elle n'a pas besoin
 Pour la pipeline A le problème était à la ligne 12, elle n'était pas aligné
 Pour la pipeline B il manquait le actions/checkout@v6
 Pour la pipeline C il manquait les guillemets pour les versions de pythons à la ligne 9
+
+
+## TP3 Questions
+
+### Taille
+48.9MB
+
+### Difference entre une image et un conteneur ?
+L'image est le guide qui permet d'obtenir le conteneur. 
+Le conteneur est donc l'instance de l'image. 
+
+### A quoi sert le .dockerignore
+Le dockerignore permet d'empêcher de push certains fichiers qui doivent rester privé (exemple: .env)
+
+###  Que gagne-t-on à décrire le lancement dans un fichier plutôt que dans une longue commande ?
+Cela permet de gagner en lisibilité
+
+
