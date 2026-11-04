@@ -12,6 +12,8 @@ jobs:
       contents: read
       packages: write
     runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.meta.outputs.version }} # Exporte le tag pour les jobs de déploiement
     steps:
       - uses: actions/checkout@v4
       
@@ -52,3 +54,75 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             APP_VERSION=${{ env.APP_VERSION }}
+
+  deploy-staging:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Connexion à GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Déployer et tester sur Staging
+        run: |
+          # Récupération sécurisée du nom de l'image en minuscules
+          IMAGE="ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
+          TAG="${{ needs.build.outputs.image_tag }}"
+          
+          echo "Lancement de l'image: $IMAGE:$TAG"
+          
+          # Lancement du conteneur en arrière-plan
+          docker run -d --name app-staging -p 8000:8000 "$IMAGE:$TAG"
+
+          # Test de fumée avec boucle d'attente (le démarrage prend du temps)
+          echo "Attente du démarrage de l'application..."
+          for i in {1..10}; do
+            if curl -f http://localhost:8000/health && curl -f http://localhost:8000/version; then
+              echo "Application prête et test de fumée réussi"
+              exit 0
+            fi
+            sleep 3
+          done
+          
+          echo "Échec du test de fumée"
+          docker logs app-staging
+          exit 1
+
+  deploy-production:
+    needs: [build, deploy-staging]
+    runs-on: ubuntu-latest
+    environment: production
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Connexion à GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Déployer et tester en Production
+        run: |
+          IMAGE="ghcr.io/$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')"
+          TAG="${{ needs.build.outputs.image_tag }}"
+          
+          echo "Lancement de la release en Production: $IMAGE:$TAG"
+          
+          docker run -d --name app-production -p 8000:8000 "$IMAGE:$TAG"
+
+          # Test de fumée pour la production
+          for i in {1..10}; do
+            if curl -f http://localhost:8000/health && curl -f http://localhost:8000/version; then
+              echo "Mise en prod réussie"
+              exit 0
+            fi
+            sleep 3
+          done
+          
+          echo "Échec du test de fumée en prod"
+          docker logs app-production
+          exit 1
