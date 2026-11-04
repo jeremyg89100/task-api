@@ -67,4 +67,10 @@ Le dockerignore permet d'empêcher de push certains fichiers qui doivent rester 
 ###  Que gagne-t-on à décrire le lancement dans un fichier plutôt que dans une longue commande ?
 Cela permet de gagner en lisibilité
 
+### Pourquoi build attend-il test ?
+Build attend test pour ne pas créer une conteneur avec un code qui ne fonctionne pas
+
+### Pourquoi éviter le tag latest en production ?
+Il faut éviter le tag latest car le tag change tout le temps alors que le principe du conteneur est qu'il doit être immuable.
+
 
