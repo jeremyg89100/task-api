@@ -73,4 +73,12 @@ Build attend test pour ne pas créer une conteneur avec un code qui ne fonctionn
 ### Pourquoi éviter le tag latest en production ?
 Il faut éviter le tag latest car le tag change tout le temps alors que le principe du conteneur est qu'il doit être immuable.
 
+### À quoi sert un test de fumée ?
+Le test de fumée sert à vérifier que l'app fonctionne
+
+### Pourquoi demander une approbation humaine avant la production ?
+Afin de rajouter une sécurité et d'avoir une vérification humaine avant de partir en production.
+
+### Pourquoi ne pas exécuter une application en root dans un conteneur ?
+On ne veut pas donner trop de droits aux utilisateurs et provoquer une faille de sécurité
 
