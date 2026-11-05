@@ -88,3 +88,9 @@ On ne veut pas donner trop de droits aux utilisateurs et provoquer une faille de
 Un pod est un conteneur de kubernetes.
 Le deployment est le nombre de pod que l'on souhaite. Peu importe si il y a un pod qui tombe, un autre sera crée pour toujours respecter ce nombre.
 Un namespace est le nom du dossier où se trouve le cluster.
+
+### *Observation TP4-6 (réponse écrite, pas de capture) :** à un moment, avez-vous vu les **5 pods** ? Pendant combien de temps environ ? Que s'est-il passé ensuite ?
+Les pods se sont ajoutés en pending puis sont devenus des ImagePullBackOff
+
+### Que signifie `selfHeal` ? Pourquoi le retour arrière est-il simple en GitOps ?
+selfHeal signifie que kubernetes va se mettre à jour en fonction du github automatiquement. Le retour en arrière est GitOps car il y a une trace du commit qui a effectuer le revert.
