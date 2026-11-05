@@ -82,3 +82,9 @@ Afin de rajouter une sécurité et d'avoir une vérification humaine avant de pa
 ### Pourquoi ne pas exécuter une application en root dans un conteneur ?
 On ne veut pas donner trop de droits aux utilisateurs et provoquer une faille de sécurité
 
+## Questions TP4
+
+### Avec vos mots : c'est quoi un pod ? Un deployment ? Pourquoi un `namespace` ?
+Un pod est un conteneur de kubernetes.
+Le deployment est le nombre de pod que l'on souhaite. Peu importe si il y a un pod qui tombe, un autre sera crée pour toujours respecter ce nombre.
+Un namespace est le nom du dossier où se trouve le cluster.
