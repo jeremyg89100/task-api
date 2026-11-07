@@ -94,3 +94,10 @@ Les pods se sont ajoutés en pending puis sont devenus des ImagePullBackOff
 
 ### Que signifie `selfHeal` ? Pourquoi le retour arrière est-il simple en GitOps ?
 selfHeal signifie que kubernetes va se mettre à jour en fonction du github automatiquement. Le retour en arrière est GitOps car il y a une trace du commit qui a effectuer le revert.
+
+### Résumez en 5 lignes le chemin d'un `git tag` jusqu'au pod. Qui pousse (push) et qui tire (pull) ? Quelle différence avec un déploiement CI/CD « classique
+Lorsque l'on push avec le tag cela va lancer la pipeline CI qui pousse l'image docker.
+ArgoCD va pull le dépot github vers le cluster. 
+Kubernetes met ensuite à jour les pods avec les nouvelles informations qu'il a reçu.
+La différence est qu'avec un déploiement classique, la pipeline CI push sur le cluster, alors qu'ici le cluster pull son état depuis git.
+
